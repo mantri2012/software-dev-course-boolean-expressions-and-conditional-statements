@@ -26,20 +26,43 @@ Paste the following code into your editor:
 
 const readline = require('readline-sync');
 
-const hasTorch = true;
-const hasMap = false;
+const hasTorch = false;
+const hasMap = true;
+const hasSword=false;
+const hasCompass = true;
+const hasJacket = true;
 
-console.log("You see two paths: one leads to the mountains, the other to the village.");
-const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
+console.log("You see three paths: one leads to the mountains, to the village, and the other to the forest.");
+const choice = readline.question("Do you go to the 'mountains' or the 'village' or 'forest'?");
 
 if (choice === "mountains" && hasTorch) {
   console.log("You safely navigate through the dark mountains.");
-} else if (choice === "mountains" && !hasTorch) {
-  console.log("It's too dark to proceed. You decide to turn back.");
-} else if (choice === "village" || hasMap) {
-  console.log("You find your way to the village.");
-} else {
-  console.log("You get lost and wander aimlessly.");
+} else if (choice === "mountains" && hasJacket) {
+   
+    console.log("Get ready !");
+    const climb = readline.question("Do you want to climb the mountain (yes/no) ?");
+      if (climb === "yes") {
+        console.log("It's windy and cold in the mountains, zipup your jacket !");
+      } else if(climb === "no"){
+        console.log("Choose either Village or Forest.");
+      }else {
+        console.log("You get lost and wander aimlessly if you do not choose correctly.");
+      }
+} else if (choice === "village" && hasMap) {
+  if (hasCompass){
+    console.log("You can reach your destination quickly using map and compass.");
+  }
+  else {
+    console.log("Delay reaching your destination as there's no compass to find the correct way.");
+  }
+} else if (choice === "village" && !hasMap) {
+  console.log("It is difficult to find your way to the village with out Map.");
+} else if(choice==="forest" && hasSword){
+  console.log("You can use the sword to protect yourself from wild animals in forest.");
+}else if(choice==="forest" && !hasSword){
+  console.log("It is risky to go to Forest with out sword.");
+}else {
+  console.log("You get lost and wander aimlessly if you do not choose correctly.");
 }
 
 /* 
